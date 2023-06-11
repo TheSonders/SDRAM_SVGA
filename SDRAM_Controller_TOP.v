@@ -4,7 +4,7 @@
 /*
 MIT License
 
-Copyright (c) 2023 Antonio S�nchez (@TheSonders)
+Copyright (c) 2023 Antonio Sánchez (@TheSonders)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -67,7 +67,8 @@ module SDRAM_Controller_TOP(
 	wire Buf_WRn;
 	wire Buf_RDn;
 
-  ODDR2 #(
+	//ODDR2 Requeridos por la Spartan para sacar señales del PLL hacia los pines de la SDRAM y del DAC de Vídeo
+	ODDR2 #(
       .DDR_ALIGNMENT("NONE"), // Sets output alignment to "NONE", "C0" or "C1" 
       .INIT(1'b0),    // Sets initial state of the Q output to 1'b0 or 1'b1
       .SRTYPE("SYNC") // Specifies "SYNC" or "ASYNC" set/reset
@@ -158,8 +159,8 @@ SDRAM_Controller SDRAM (
 	 
  SDRAM_PLL PLL
    (.CLK_50(CLK_50M),
-    .CLK_SDRAM(SDRAM_CLK),
-    .CLK_SVGA(VGA_CLK),
-	 .CLK_CPU(CPU_CLK));	 
+    .CLK_SDRAM(SDRAM_CLK), 	//133,333MHZ
+    .CLK_SVGA(VGA_CLK),		// 40,000MHz
+    .CLK_CPU(CPU_CLK));		// 32,000MHz
 	 
 endmodule
