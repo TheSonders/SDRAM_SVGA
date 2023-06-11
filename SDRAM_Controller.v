@@ -58,11 +58,8 @@ module SDRAM_Controller(
 	input wire VIDEO_RDn,
 	input wire DO_REFRESH,
 	//Databuffer
-	output reg Buf_WRn=1,
-	output wire REFRESH_C
+	output reg Buf_WRn=1
 	);
-
-	assign REFRESH_C=	({SDRAM_CS_N,SDRAM_RAS_N,SDRAM_CAS_N,SDRAM_WE_N}==AUTO_REFRESH);
 	 
 	 //Timing
 	 localparam MAIN_FREQ=133_333_333;
